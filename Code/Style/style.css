@@ -1,0 +1,32 @@
+.categories{
+    margin:auto 0;
+}
+
+
+.question{
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:50px;
+
+}
+.question h2{
+    font-size:3em;
+}
+.question .options li{
+    font-size:1.5em;
+    margin:15% 0;
+}
+
+.right{
+    color:green
+}
+
+.wrong{
+    color:red;
+}
+.hint{
+    display:none;
+}
