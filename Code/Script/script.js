@@ -1,20 +1,20 @@
 import { shuffleArray } from "./usefullCode.js";
 //Creating Variables
 const containerEl =document.querySelector('.containerQuiz');
+containerEl.style.display='none';
 
-const questionEl = document.createElement('h2');
+const questionEl = document.querySelector('.questionTitle')
 
-const ulEl = document.createElement('ul');
-ulEl.setAttribute('class', 'options');
+const ulEl = document.querySelector('.options');
+
 
 const infoArt = document.querySelector('.infoArt');
-let time = document.createElement('p');
-infoArt.appendChild(time);
+let time = document.querySelector('.time');
 
-const hintEl=document.createElement('p')
+const hintEl=document.querySelector('.hint')
 infoArt.appendChild(hintEl);
 
-let score=document.createElement('p')
+let score=document.querySelector('.score')
 infoArt.appendChild(score);
 // create 4 li to represent the options for asking a qeustion 
 const liArray=[]
@@ -25,7 +25,7 @@ for(let i=0;i<4;i++){
 }
 
 const carouselItems=document.querySelector('.click')
-
+const createBtn=document.querySelector('#createBtn')
 class Questions { 
     constructor(question,correct, one, two, three,hint) {
         this._question = question;
@@ -38,6 +38,7 @@ class Questions {
     }
     
     append() {
+        score.textContent='Score:'
          // add content to the score
         // add content to the hint
         hintEl.textContent = 'Hint';
@@ -189,16 +190,21 @@ allQuizes.push(jsArray)
         // Navigation for different quizes
             for(let i = 0; i < carouselItems.children.length; i++) {
                 carouselItems.children[i].addEventListener('click', () => {
+                    containerEl.style.display='';
                     navIn()
                     currentQuizIndex = i; 
                     allQuizes[currentQuizIndex][currentQuestionIndex].append();
-                    // carouselItems.style.display = 'none';
+                    carouselItems.style.display = 'none';
+                    document.querySelector('.categories').style.display='none'
+                    document.querySelector('header').style.display='none'
+                    document.querySelector('footer').style.display='none'
                 });
             }
             
-
-      
-
+            createBtn.addEventListener('click',()=>{
+                
+            })
+            
  /* ----------------------------------------------------------------------------------------------------*/
 // IDEAS
 // QUESTION 

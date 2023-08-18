@@ -19,28 +19,100 @@
 
 <body>
   <header>
-     <h1>Quizz App</h1>
-    <nav>
-        <ul>
-            <li>
-                <a></a>
-            </li>
-
-            <li>
-                <a></a>
-            </li>
-
-            <li>
-                <a> </a>
-            </li>
-
-            <li>
-                <a> </a>
-            </li>
-        </ul>
-    </nav>
+    <h1>Quizz App</h1>
+    <a class="btn " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+      <img src="./Images/moreIcon.png">
+    </a>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+        <div class="dropdown mt-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Dropdown button
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </header> 
   <main>
+      <section class="features">
+<!-- Modal -->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel">Set Up</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Title</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">Entere the name you want to be associated with your quiz</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Description</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+            <div id="emailHelp" class="form-text">Give a summary of what your quiz is about and what to expect when taking it </div>
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Create Questions</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Questions</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Question 1</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Description</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="exampleInputPassword1">
+            <div id="emailHelp" class="form-text">List Up to four multiple choice options</div>
+          </div>
+
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+      </div>
+    </div>
+  </div>
+</div>
+<a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Create Quiz</a>
+
+      </section>
         <section class="categories">
 
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -95,35 +167,31 @@
         </section>
 
         <section class="containerQuiz">
-          <artilce class="infoArt"></artilce>
+          <h2 class="questionTitle"></h2>
+          <ul class="options"></ul>
+          <artilce class="infoArt">
+            <p class="time"></p>
+            <p class="hint"></p>
+            <p class="score"></p>
+          </artilce>
         </section>
   </main>
 
-
-
-
   <footer>
-    <!-- <h1>Damion Morgan</h1>
-
+    <h1>Damion Morgan</h1>
     <nav>
-        <ul>
-            <li>
-                <a></a>
-            </li>
+      <li>
+        <a>
+          Email
+        </a>
+      </li>
 
-            <li>
-                <a></a>
-            </li>
-
-            <li>
-                <a> </a>
-            </li>
-
-            <li>
-                <a> </a>
-            </li>
-        </ul>
-    </nav> -->
+      <li>
+        <a>
+          Email
+        </a>
+      </li>
+    </nav>
   </footer>
 
 
