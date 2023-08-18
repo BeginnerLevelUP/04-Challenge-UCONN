@@ -202,7 +202,7 @@ allQuizes.push(jsArray)
             }
             
             createBtn.addEventListener('click',()=>{
-                
+
             })
             
  /* ----------------------------------------------------------------------------------------------------*/
@@ -210,34 +210,12 @@ allQuizes.push(jsArray)
 // QUESTION 
 // ANSWER 
 // hint and read more section 
- // create an animation for right and wrong 
- // add in a a spot where you can type in an answer 
 // create own quiz and be able to edit it
 // user for high score
-// work with data atrributes somehow 
 
 
  
 
 
 
-
-// // Handle Bars
-// const  quizData = {
-//     question: "we did it",
-//     question2:'we did it again'
-//   };
-  
-//   // Compile
-//   const templateSource = document.querySelector("#question").innerHTML;
-//   const template = Handlebars.compile(templateSource);
-  
-//   // Render
-//   const renderedHtml = template(quizData)
-//   const renderedHtml = template({ question: quizData[iterate] });
-//   document.querySelector("#questionHandlebars").innerHTML = renderedHtml;
-/* <script id="template" type="text/x-handlebars-template">
-<h1>Hello, {{name}}!</h1>
-<p>Today is {{day}}.</p>
-</script> */
 
