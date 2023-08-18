@@ -1,9 +1,10 @@
 .categories{
     margin:auto 0;
+
 }
 
 
-.question{
+.containerQuiz{
     text-align: center;
     display:flex;
     flex-direction: column;
@@ -12,10 +13,12 @@
     gap:50px;
 
 }
-.question h2{
+
+.containerQuiz h2{
     font-size:3em;
 }
-.question .options li{
+
+.containerQuiz .options li{
     font-size:1.5em;
     margin:15% 0;
 }

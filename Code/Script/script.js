@@ -1,23 +1,32 @@
-
+import { shuffleArray } from "./usefullCode.js";
 //Creating Variables
 const containerEl =document.querySelector('.containerQuiz');
-containerEl.setAttribute('class', 'question');
+
 const questionEl = document.createElement('h2');
+
 const ulEl = document.createElement('ul');
 ulEl.setAttribute('class', 'options');
+
+const infoArt = document.querySelector('.infoArt');
+let time = document.createElement('p');
+infoArt.appendChild(time);
+
 const hintEl=document.createElement('p')
-hintEl.setAttribute('class','hint')
+infoArt.appendChild(hintEl);
+
+let score=document.createElement('p')
+infoArt.appendChild(score);
 // create 4 li to represent the options for asking a qeustion 
 const liArray=[]
 for(let i=0;i<4;i++){
     const liEl = document.createElement('li');
     ulEl.appendChild(liEl);
     liArray.push(liEl)
-
 }
 
+const carouselItems=document.querySelector('.click')
 
-class Questions {
+class Questions { 
     constructor(question,correct, one, two, three,hint) {
         this._question = question;
         this._correct=correct
@@ -29,24 +38,41 @@ class Questions {
     }
     
     append() {
+         // add content to the score
+        // add content to the hint
+        hintEl.textContent = 'Hint';
+        hintEl.setAttribute('style', 'text-decoration: underline;');
+        
+        const hint = () => {
+            hintEl.textContent = `${hintEl.textContent} - ${this._hint}`;
+            hintEl.removeAttribute('style');
+            
+            // Remove the event listener after it's been clicked once
+            hintEl.removeEventListener('click', hint);
+        };
+        
+        hintEl.addEventListener('click', hint);
+
 
         // Adding Content and Appeding to the dom
         questionEl.textContent = this._question; // content for the title of the question
+
+
+
         // content for the list items
-        const options = [this._correct,this._one, this._two, this._three];
+  const options = [this._correct, this._one, this._two, this._three];
+  shuffleArray(options);
         for (let i = 0; i < options.length; i++) {
             ulEl.children[i].textContent = options[i]; // Set option content  
         }
 
         
-        // add content to the hint
-        hintEl.textContent=this._hint
+
         // condiitonal to make hint appear 
         // if longer than a certain amount of time or if you click on 2 wrong answers
 
         containerEl.appendChild(questionEl);
         containerEl.appendChild(ulEl);
-        containerEl.appendChild(hintEl)
         document.body.appendChild(containerEl);  
 
     }
@@ -98,15 +124,37 @@ allQuizes.push(htmlArray)
 allQuizes.push(cssArray)
 allQuizes.push(jsArray)
 
-console.log(allQuizes)
+
  /* --------------------------------------------------------------------------------------------------*/
 
 //FUNCTIONS
+        //Time System
+        let countdown = 60;
+
+        function updateTimer() {
+            time.textContent = `${countdown} Seconds Left`;
+          }
+        // Function to handle the timer
+        function startTimer() {
+          updateTimer();
+          
+          if (countdown === 0) {
+            time.textContent = 'Timer has ended!';
+          } else {
+            countdown--;
+            setTimeout(startTimer, 1000); // Call startTimer again after 1 second
+          }
+        }
+
         //added event listener and right or wrong check system
+        let currentQuizIndex = 0
+        let currentQuestionIndex = 0; // this how you get a random mode
         function select(element, array, currentIndex) {
             if (element.textContent === array[currentIndex]._correct) {
                  // add animation
                 currentIndex++; 
+                score.textContent = `Score: ${currentIndex}`
+                console.log(score)
                 if (currentIndex < array.length) {
                     array[currentIndex].append();
                     currentQuestionIndex = currentIndex; 
@@ -119,30 +167,51 @@ console.log(allQuizes)
             console.log(currentIndex);
         }
 
-            let currentQuestionIndex = 0; // this how you get a random mode
+        // Navigatation system for indivdual questions
+        function navIn(){
+            startTimer()
             liArray.forEach(element => {
-                
-                element.addEventListener('click', () => {
-                    select(element, htmlArray, currentQuestionIndex);
-                });
-            });
-
+               element.addEventListener('click', () => {
+                // select all quizes
+                allQuizes.forEach(quizArray => {
+                    select(element, quizArray, currentQuestionIndex);
+                    if (element.textContent !== quizArray[currentQuestionIndex]._correct && countdown > 0) {
+                        countdown -= 5;
+                    }
             
-htmlArray[currentQuestionIndex].append()              
+                });
+
+
+               });
+           });
+        }
+
+        // Navigation for different quizes
+            for(let i = 0; i < carouselItems.children.length; i++) {
+                carouselItems.children[i].addEventListener('click', () => {
+                    navIn()
+                    currentQuizIndex = i; 
+                    allQuizes[currentQuizIndex][currentQuestionIndex].append();
+                    // carouselItems.style.display = 'none';
+                });
+            }
+            
+
+      
 
  /* ----------------------------------------------------------------------------------------------------*/
 // IDEAS
-
 // QUESTION 
 // ANSWER 
 // hint and read more section 
  // create an animation for right and wrong 
  // add in a a spot where you can type in an answer 
-// inserrt a try system 3 tries 
+// create own quiz and be able to edit it
+// user for high score
 // work with data atrributes somehow 
 
 
-
+ 
 
 
 
