@@ -25,7 +25,13 @@ for(let i=0;i<4;i++){
 }
 
 const carouselItems=document.querySelector('.click')
-const createBtn=document.querySelector('#createBtn')
+
+// Needed variable so that user can create their own quiz
+const name=document.querySelector('#name')
+const titleText=document.querySelector('#userQuizContent')
+const nextButton=document.querySelector('#nextButton')
+const backButton=document.querySelector('#backButton')
+
 class Questions { 
     constructor(question,correct, one, two, three,hint) {
         this._question = question;
@@ -77,6 +83,7 @@ class Questions {
         document.body.appendChild(containerEl);  
 
     }
+
     // add another method to add if multiple options are correct
 }
 
@@ -188,6 +195,7 @@ allQuizes.push(jsArray)
         }
 
         // Navigation for different quizes
+        function navCarousel(){
             for(let i = 0; i < carouselItems.children.length; i++) {
                 carouselItems.children[i].addEventListener('click', () => {
                     containerEl.style.display='';
@@ -198,12 +206,117 @@ allQuizes.push(jsArray)
                     document.querySelector('.categories').style.display='none'
                     document.querySelector('header').style.display='none'
                     document.querySelector('footer').style.display='none'
+                    document.querySelector('.features').style.display='none'
                 });
             }
-            
-            createBtn.addEventListener('click',()=>{
+        }
+        navCarousel()
 
-            })
+            const userQuizArray = [];
+            let userQuiz;
+            const dataSwitch = ['quizTitle', 'description', 'image', 'questionTitle', 'correct', 'one', 'two', 'three', 'hint'];
+            let userCount = 0;
+            let userData = {};
+            
+            nextButton.addEventListener('click', () => {
+                const inputValue = titleText.value;
+                const dataAttribute = dataSwitch[userCount];
+            
+                switch (dataAttribute) {
+                    case 'quizTitle':
+                        userData.quizTitle = inputValue;
+                        break;
+                    case 'description':
+                        userData.description = inputValue;
+                        break;
+                    case 'image':
+                        userData.image = inputValue;
+                        break;
+                    case 'questionTitle':
+                        userData.questionTitle = inputValue;
+                        break;
+                    case 'correct':
+                        userData.correct = inputValue;
+                        break;
+                    case 'one':
+                        userData.one = inputValue;
+                        break;
+                    case 'two':
+                        userData.two = inputValue;
+                        break;
+                    case 'three':
+                        userData.three = inputValue;
+                        break;
+                    case 'hint':
+                        userData.hint = inputValue;
+                        break;
+                    default:
+                        break;
+                }
+            
+                userCount++;
+            
+                if (userCount < dataSwitch.length) {
+                    // Update the text to guide user
+                    name.textContent = dataSwitch[userCount];
+            
+                    // Clear input field
+                    titleText.value = '';
+                } else {
+                    // All inputs collected, create userQuiz instance
+                    const userDataTemplate = {
+                        imgSrc: userData.image,
+                        imgAlt: 'Images Of User Created Quiz',
+                        Title: userData.quizTitle,
+                        Description: userData.description,
+                    };
+
+                    const userDataButtonTemplate = {
+                        slideTo: 3,
+                        slideNum: 4
+                    };
+                    
+                    // Compile and render the Handlebars template for userQuizButton
+                    const source1 = document.querySelector("#userQuizButton-template").innerHTML;
+                    const template1 = Handlebars.compile(source1);
+                    const renderedHtml1 = template1(userDataButtonTemplate);
+                    document.querySelector("#userButton").innerHTML = renderedHtml1;
+
+                    // Compile and render the Handlebars template for userQuiz
+                    const source = document.querySelector("#userQuiz-template").innerHTML;
+                    const template = Handlebars.compile(source);
+                    const renderedHtml = template(userDataTemplate);
+                    document.querySelector("#user-Item").innerHTML = renderedHtml;
+
+
+
+                    userQuiz = new Questions(
+                        userData.questionTitle,
+                        userData.correct,
+                        userData.one,
+                        userData.two,
+                        userData.three,
+                        userData.hint
+                    );
+                    userQuizArray.push(userQuiz);
+                    localStorage.setItem('userCreatedQuiz',JSON.stringify(userQuizArray))
+                    localStorage.setItem('userCreatedCarousel',JSON.stringify(userDataTemplate))
+                    localStorage.setItem('userCreatedButtonQuiz',JSON.stringify(userDataButtonTemplate))
+                    allQuizes.push(userQuizArray)
+                     navCarousel()
+                    // Reset userCount and userData for the next question
+                    userCount = 0;
+                    userData = {};
+            
+                    // Reset text content and input field
+                    name.textContent = 'Title';
+                    titleText.value = '';
+                }
+            }); 
+
+
+
+            
             
  /* ----------------------------------------------------------------------------------------------------*/
 // IDEAS
@@ -212,7 +325,6 @@ allQuizes.push(jsArray)
 // hint and read more section 
 // create own quiz and be able to edit it
 // user for high score
-
 
  
 

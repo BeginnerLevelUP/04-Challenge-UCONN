@@ -1,5 +1,22 @@
+:root{
+    --primary:#643A71;
+    --secondary:#7067CF;
+    --accent:#CBF3D2;
+    --background:#F5F0F6;
+    --textColor:;
+    --regFont: 'Hind', sans-serif;;
+    --headFont: 'Barriecito', cursive;;
+    --listFont:'Bebas Neue', sans-serif;;
+    }
+    
+    
 *{
    transition:1s; 
+   font-family:var(--regFont);
+   border-radius:15px;
+}
+body{
+    background-color:var(--background);
 }
 header{
     display: flex;
@@ -7,7 +24,9 @@ header{
     justify-content: center;
 }
 header h1{
-    font-size:3em;
+    font-family: var(--headFont);
+    color:var(--primary);
+    font-size:5em;
 }
 header img{
     width:50px;
@@ -16,11 +35,17 @@ header img{
     left:0px;
     z-index:1;
 }
+li{
+    font-family:var(--listFont);
+}
 .features{
     padding:20px;
 }
+.features .btn{
+
+}
 .categories{
-    margin:5% auto;
+    margin:1% auto;
     width:65%;
 }
 
@@ -41,10 +66,10 @@ header img{
     padding:10px;
     font-size:2em;
     margin:10% 0;
-    border-radius:15px;
 }
 .containerQuiz .options li:hover{
-    border:1px solid black;
+    color:white;
+    border:1px solid white;
     background-color:red;
 }
 
@@ -59,26 +84,47 @@ header img{
 .infoArt{
     display:flex;
     margin:5% auto;
-    margin-bottom:15%;
-    border:1px solid black;
+    margin-bottom:10%;
+    border:1px solid #95B8D1;
     padding:2%;
     width:80%;
+    background-color: #B8E0D2;
 }
 .infoArt p{
+    font-size:1.5em;
+    color:white;
     width:fit-content;
-    margin:auto 80px;
+    margin:auto 170px;
 }
+
 footer{
-    display:flex;
-    justify-content: space-around;
-    padding:auto  20px;
+    width:fit-content;
+    border:5px solid var(--secondary);
+    padding:10px 20px;
+    margin-left:18%;
+    background-color:#CBF3D2;
+}
+footer h2{
+    color:var(--primary);
+    text-align: center;
+    font-size:2em;
+    margin:15px;
 }
 footer nav li{
     list-style-type:none;
     display:inline;
-    margin:auto 10ox;
+    margin:150px;
+    color:white;
+    border:2.5px solid var(--secondary);
+    background-color:#B7C0EE;
+    padding:2px 5px;
+    border-radius:8px;
 }
-footer a{
+footer nav li:hover,footer nav a:hover{
+    filter: brightness(50%);
+}
+footer a,footer a:hover{
     text-decoration:none;
+    color:inherit
 }
 /* Need to create root  and animationf for right/wrong and display none */
