@@ -127,4 +127,29 @@ footer a,footer a:hover{
     text-decoration:none;
     color:inherit
 }
-/* Need to create root  and animationf for right/wrong and display none */
+/* Animation for right/wrong and complete */
+@keyframes right {
+    
+}
+
+@keyframes wrong {
+    
+}
+
+@keyframes complete {
+    
+}
+
+/* Media Queries */
+
+@media only screen and (max-width:991px) and (min-width:768px){
+    /* tablet */
+    }
+    
+    
+    @media only screen and (max-width: 767px){
+    /* phone */
+    /* make carousel vertical*/
+    }
+
+    
