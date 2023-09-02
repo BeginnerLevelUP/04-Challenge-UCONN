@@ -3,7 +3,6 @@
     --secondary:#7067CF;
     --accent:#CBF3D2;
     --background:#F5F0F6;
-    --textColor:;
     --regFont: 'Hind', sans-serif;;
     --headFont: 'Barriecito', cursive;;
     --listFont:'Bebas Neue', sans-serif;;
@@ -11,7 +10,7 @@
     
     
 *{
-   transition:1s; 
+ 
    font-family:var(--regFont);
    border-radius:15px;
 }
@@ -39,7 +38,8 @@ li{
     font-family:var(--listFont);
 }
 .features{
-    padding:20px;
+    text-align:center;
+    padding:15px 20px;
 }
 .features .btn{
 
@@ -73,9 +73,14 @@ li{
     background-color:red;
 }
 
-.right{
-    color:green
-}
+.complete{
+    width:fit-content;
+    background-color:black;
+    color:white;
+    padding:15px;
+    animation: rigth 3s forwards ease-in-out ;
+}  
+
 
 .wrong{
     color:red;
@@ -89,19 +94,24 @@ li{
     padding:2%;
     width:80%;
     background-color: #B8E0D2;
+    justify-content: space-around;
 }
 .infoArt p{
     font-size:1.5em;
     color:white;
     width:fit-content;
-    margin:auto 170px;
+    /* margin:auto 170px; */
+}
+
+#complete {
+    display:none;
 }
 
 footer{
     width:fit-content;
     border:5px solid var(--secondary);
     padding:10px 20px;
-    margin-left:18%;
+    margin:0 auto;
     background-color:#CBF3D2;
 }
 footer h2{
@@ -127,10 +137,29 @@ footer a,footer a:hover{
     text-decoration:none;
     color:inherit
 }
+
 /* Animation for right/wrong and complete */
-@keyframes right {
-    
+@keyframes rigth {
+    0%{
+        width:0
+        
+    }
+    25%{
+        width:0
+    }
+    50%{
+        width:0
+    }
+    75%{
+        width:0
+    }
+    100%{
+        width:fit-content
+
+    }
+
 }
+
 
 @keyframes wrong {
     
