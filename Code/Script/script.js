@@ -1,5 +1,6 @@
+import { doc } from "mocha/lib/reporters/index.js";
 import { shuffleArray } from "./usefullCode.js";
-$("#draggable").draggable();
+
 
 //Creating Variables
 const containerEl = document.querySelector('.containerQuiz');
@@ -210,6 +211,8 @@ const quizHintInput = document.getElementById('quizHint');
 const quizLength = document.getElementById('quizLength')
 const save = document.getElementById('saveButton')
 const quizStart = document.getElementById('createQuiz')
+const nextQuestion=document.querySelector('#nextQuestion')
+const nextAnswer=document.querySelector('#nextAnswer')
 
 const userDataButtonTemplate = {
     slideTo: 2,
@@ -262,13 +265,17 @@ class UserQuestions {
 
     }
 }
-const allUserCreatedQuizes = []
+nextQuestion.addEventListener('click',()=>{
+
+})
+let count = 0
 save.addEventListener('click', () => {
+
+    const allUserCreatedQuizes = []
 
     userDataButtonTemplate.slideTo++;
     userDataButtonTemplate.slideNum++;
-    console.log(userDataButtonTemplate.slideTo);
-    console.log(userDataButtonTemplate.slideNum);
+
 
     const userCreatedQuiz = new UserQuestions(
         quizNameInput.value,
@@ -283,7 +290,7 @@ save.addEventListener('click', () => {
         quizHintInput.value
     );
     userCreatedQuiz.appendToCarousel()
-    console.log(userCreatedQuiz);
+
 
     const newUserQuestion = new Questions(quizNameInput.value, quizAnswerInput.value, 'yeah1', 'yeah2', 'yeah3', quizHintInput.value)
     const newUserQuestion2 = new Questions(quizNameInput.value, quizAnswerInput.value, 'yead', 'yeahfdsvfd2', 'yeah3', quizHintInput.value)
@@ -292,8 +299,6 @@ save.addEventListener('click', () => {
     allUserCreatedQuizes.push(newUserQuestion2)
     allQuizes.push(allUserCreatedQuizes)
 
-    console.log(allUserCreatedQuizes)
-    console.log(allQuizes)
 
     quizNameInput.value = "";
     quizDescriptionInput.value = "";
@@ -303,14 +308,15 @@ save.addEventListener('click', () => {
     quizAnswerInput.value = "";
     quizHintInput.value = "";
 
+
+
+
 });
 
 /* ----------------------------------------------------------------------------------------------------*/
 // allow user to change timer
  // switch quizz question to slide
  // create function slides
-
-
-
-
-
+// save score to local storage -1 from score
+// create interface to delte quiz
+// Check if the userCreatedQuiz is present in local storage

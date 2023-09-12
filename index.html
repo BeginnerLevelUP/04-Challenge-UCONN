@@ -17,8 +17,7 @@
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <!-- JQuery -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
    <!-- My Styles -->
     <link  rel="stylesheet" href="./Code/Style/reset.css">
     <link  rel="stylesheet" href="./Code/Style/normalize.css">
@@ -79,25 +78,33 @@
     
                 <label for="" class="form-label" id="name">Question</label>
                 <input type="text" id="quizQuestion" data-switch="" class="form-control" name="" aria-describedby="helpId"
-                  placeholder="">
+                    placeholder=""> 
+                                    <span>
+                                      <a name="" id="nextQuestion" class="btn btn-primary" href="#" role="button">Next</a>
+                                    </span>
+                                                      <label for="" class="form-label" id="name">Answer</label>
+                                                                      <input type="text" id="quizAnswer" data-switch="" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                <span>
+                                  <a name="" id="nextAnswer" class="btn btn-primary" href="#" role="button">Next</a>
+                                  <span>
+                                                                        <label class="form-check-label" for="">
+                                                                          (Correct Answer)
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" value="" id="" checked>
+                                  </span>
+                </span>    
+
     
-                <label for="" class="form-label" id="name">Answer</label>
-                <label class="form-check-label" for="">
-                  (Correct Answer)
-                </label>
-                <input class="form-check-input" type="checkbox" value="" id="" checked>
-                <input type="text" id="quizAnswer" data-switch="" class="form-control" name="" aria-describedby="helpId"
-                  placeholder="">
-    
-    
-    
+  
                 <label for="" class="form-label" id="name">Hint</label>
                 <input type="text" id="quizHint" data-switch="" class="form-control" name="" aria-describedby="helpId"
                   placeholder="">
+
+                <label for="" class="form-label" id="name">Time</label>
+                <input type="text" id="quizHint" data-switch="" class="form-control" name="" aria-describedby="helpId" placeholder="In seconds">
               </div>
     
               <a name="" class="btn btn-primary" href="#" role="button" id="saveButton" >Save</a>
-              <a name="" class="btn btn-primary" href="#" role="button" id="backButton">Back</a>
             </div>
           </div>
           <div class="modal-footer">
@@ -222,9 +229,6 @@
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"></script>
-  
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script type="module" src="./Code/Script/script.js"></script> 
 

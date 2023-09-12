@@ -44,6 +44,9 @@ li{
 .features .btn{
 
 }
+.features label{
+    margin-top:4%;
+}
 .categories{
     margin:1% auto;
     width:65%;
@@ -138,34 +141,9 @@ footer a,footer a:hover{
     color:inherit
 }
 
-/* Animation for right/wrong and complete */
-@keyframes rigth {
-    0%{
-        width:0
-        
-    }
-    25%{
-        width:0
-    }
-    50%{
-        width:0
-    }
-    75%{
-        width:0
-    }
-    100%{
-        width:fit-content
-
-    }
-
-}
-
-
-@keyframes wrong {
-    
-}
-
-@keyframes complete {
+.modal-body span{
+    display:flex;
+    justify-content: space-evenly;
     
 }
 
