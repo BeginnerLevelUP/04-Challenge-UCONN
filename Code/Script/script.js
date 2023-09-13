@@ -1,4 +1,4 @@
-import { doc } from "mocha/lib/reporters/index.js";
+
 import { shuffleArray } from "./usefullCode.js";
 
 
@@ -266,12 +266,19 @@ class UserQuestions {
     }
 }
 nextQuestion.addEventListener('click',()=>{
+        const allUserCreatedQuizes = []
+    quizName ='NewUserQuestion'
+        for(let i=0;i>quizLength.value;i++){
+            const quizName = new Questions(quizNameInput.value, quizAnswerInput.value, quizAnswerInput.value, quizAnswerInput.value, quizAnswerInput.value, quizHintInput.value)
+            allUserCreatedQuizes.push(newUserQuestion)
+            allQuizes.push(allUserCreatedQuizes)
+        }
+
 
 })
-let count = 0
+
 save.addEventListener('click', () => {
 
-    const allUserCreatedQuizes = []
 
     userDataButtonTemplate.slideTo++;
     userDataButtonTemplate.slideNum++;
@@ -282,22 +289,10 @@ save.addEventListener('click', () => {
         quizDescriptionInput.value,
         quizImageInput.value,
         quizLength.value,
-        quizQuestionInput.value,
-        quizAnswerInput.value,
-        'one',
-        'two',
-        'three',
-        quizHintInput.value
     );
     userCreatedQuiz.appendToCarousel()
 
 
-    const newUserQuestion = new Questions(quizNameInput.value, quizAnswerInput.value, 'yeah1', 'yeah2', 'yeah3', quizHintInput.value)
-    const newUserQuestion2 = new Questions(quizNameInput.value, quizAnswerInput.value, 'yead', 'yeahfdsvfd2', 'yeah3', quizHintInput.value)
-
-    allUserCreatedQuizes.push(newUserQuestion)
-    allUserCreatedQuizes.push(newUserQuestion2)
-    allQuizes.push(allUserCreatedQuizes)
 
 
     quizNameInput.value = "";
