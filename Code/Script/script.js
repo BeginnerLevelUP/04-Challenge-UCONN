@@ -110,4 +110,4 @@ function appendToPage() {
     updateTimer();
 }
 
-appendToPage()
+appendToPage
