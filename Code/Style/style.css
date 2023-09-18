@@ -9,27 +9,26 @@ body {
 }
 
 .carousel {
+    margin:5%;
     background: #EEE;
+    width: 85%;
+    height: 800px;
 }
 
 .carousel-cell {
-    width: 66%;
-    height: 200px;
+    margin:6% auto;
+    width: 60%;
+    height: 600px;
     margin-right: 10px;
     background: #8C8;
     border-radius: 5px;
-    counter-increment: gallery-cell;
+}
+#test {
+    background-image: url("/Images/js.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-/* cell number */
-.carousel-cell:before {
-    display: block;
-    text-align: center;
-    content: counter(gallery-cell);
-    line-height: 200px;
-    font-size: 80px;
-    color: white;
-}
 
 #failureDiv,#sucessDiv{
     display: none;

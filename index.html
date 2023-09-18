@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="./Code/Style/style.css">
 
 </head>
-
 <body>
   <header>
     <!-- place navbar here -->
@@ -22,7 +21,13 @@
   <main>
     <!-- Flickity HTML init -->
     <div class="carousel" data-flickity='{ "autoPlay": true }'>
-      <!-- <div class="carousel-cell"></div> -->
+      <div class="carousel-cell" id="test">
+        <h2>Quiz Name</h2>
+        <p>Quiz Descirption</p>
+      </div>
+      <div class="carousel-cell"></div>
+      <div class="carousel-cell"></div>
+      <div class="carousel-cell"></div>
     </div>
 
     <div id="infoDiv">
@@ -79,7 +84,19 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
+    <!-- Flickity -->
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+  <!-- HandleBars -->
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+  <script>
+    // compile the template
+    var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+    // execute the compiled template and print the output to the console
+    console.log(template({ doesWhat: "rocks!" }));
+  </script>
+  
   <script src="./Code/Script/script.js"></script>
 </body>
 
