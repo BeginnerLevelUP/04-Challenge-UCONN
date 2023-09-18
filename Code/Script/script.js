@@ -12,23 +12,23 @@ class Question {
 }
 
 // Class Instance
-const QUIZ1=[]
+const QUIZ1 = []
 const question1 = new Question('What is the capital of France?', ['Paris', 'Berlin', 'London', 'Madrid']);
 const question2 = new Question('What is the of France?', ['Pas', 'Bein', 'Loon', 'Maid']);
-QUIZ1.push(question1,question2)
+QUIZ1.push(question1, question2)
 
 // Default values that can be manipulated later 
 let scoreIncrement = 1;
 let currentScore = 0;
-let DefaultTimer=60
+let DefaultTimer = 60
 
 // Getting DOM Elements 
-const failureDiv=document.querySelector('#failureDiv')
-const questionDiv=document.querySelector('#questionDiv')
+const failureDiv = document.querySelector('#failureDiv')
+const questionDiv = document.querySelector('#questionDiv')
 const questionUl = document.querySelector('#questionUl');
-const time=document.querySelector('#Time')
-const scored=document.querySelector('#Score')
-const hint=document.querySelector('#Hint')
+const time = document.querySelector('#Time')
+const scored = document.querySelector('#Score')
+const hint = document.querySelector('#Hint')
 
 /* 
 Score function:
@@ -57,8 +57,8 @@ function score(Element) {
             if (currentScore === 0) {
                 scored.textContent = `Quiz Failure! Final Score: ${currentScore}`;
                 clearInterval(timerInterval)
-                time.textContent=`Time Remaining : None`
-                hint.textContent=`No Hint Can Help you Now`
+                time.textContent = `Time Remaining : None`
+                hint.textContent = `No Hint Can Help you Now`
 
             } else {
                 scored.textContent = `Score : ${currentScore} point`;
@@ -103,11 +103,17 @@ function appendToPage() {
     QUIZ1[index]._choices.forEach(Element => {
         const li = document.createElement('li');
         li.textContent = Element;
-        score(li);
         questionUl.appendChild(li);
+
+        // Remove previous event listeners
+        li.removeEventListener('click', score(li));
+
+        // Add a new event listener
+        li.addEventListener('click', score(li));
     });
 
     updateTimer();
 }
+
 
 appendToPage()
