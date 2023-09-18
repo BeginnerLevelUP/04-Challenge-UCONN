@@ -20,22 +20,38 @@ QUIZ1.push(question1,question2)
 // Default values that can be manipulated later 
 let scoreIncrement = 1;
 let currentScore = 0;
-let DefaultTimer=60
+let DefaultTimer = 60
 
 // Getting DOM Elements 
-const failureDiv=document.querySelector('#failureDiv')
-const questionDiv=document.querySelector('#questionDiv')
+const failureDiv = document.querySelector('#failureDiv')
+const questionDiv = document.querySelector('#questionDiv')
 const questionUl = document.querySelector('#questionUl');
-const time=document.querySelector('#Time')
-const scored=document.querySelector('#Score')
-const hint=document.querySelector('#Hint')
+const time = document.querySelector('#Time')
+const scored = document.querySelector('#Score')
+const hint = document.querySelector('#Hint')
+
+function appendToPage() {
+    const questionList = Array.from(questionUl.children)
+    questionList.forEach(Element=>{
+        question1._choices.forEach(choice=>{
+            Element.textContent=choice
+        })
+    })
+    
+}
+
+appendToPage()
+
+// Dont Worry About these for now
+/*
+
 
 /* 
 Score function:
 - Allows the user to move on to the next question.
 - Adds or subtracts score.
 - Adds or subtracts time when you get something
-*/
+//
 
 function score(Element) {
     scored.textContent = `Score : ${currentScore} point`
@@ -57,8 +73,8 @@ function score(Element) {
             if (currentScore === 0) {
                 scored.textContent = `Quiz Failure! Final Score: ${currentScore}`;
                 clearInterval(timerInterval)
-                time.textContent=`Time Remaining : None`
-                hint.textContent=`No Hint Can Help you Now`
+                time.textContent = `Time Remaining : None`
+                hint.textContent = `No Hint Can Help you Now`
 
             } else {
                 scored.textContent = `Score : ${currentScore} point`;
@@ -97,17 +113,4 @@ function updateTimer() {
 
 // Appends the Question to the page
 let index = 0 //used to next question
-function appendToPage() {
-    questionUl.innerHTML = ''; // Clear previous answer choices
-
-    QUIZ1[index]._choices.forEach(Element => {
-        const li = document.createElement('li');
-        li.textContent = Element;
-        score(li);
-        questionUl.appendChild(li);
-    });
-
-    updateTimer();
-}
-
-appendToPage
+*/
