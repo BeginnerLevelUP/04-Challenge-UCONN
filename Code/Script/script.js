@@ -1,4 +1,3 @@
-
 //For Question
 // Generating Question Object
 class Question {
@@ -18,6 +17,12 @@ const QUIZ1 = []
 const question1 = new Question('What is the capital of France?', ['Paris', 'Berlin', 'London', 'Madrid']);
 const question2 = new Question('What is the of France?', ['Pas', 'Bein', 'Loon', 'Maid']);
 QUIZ1.push(question1, question2)
+
+const QUIZ2 = []
+const questionA = new Question('What is the capital of France?', ['Paris', 'Berlin', 'London', 'Madrid']);
+const questionB = new Question('What is the of France?', ['Pas', 'Bein', 'Loon', 'Maid']);
+QUIZ2.push(questionA, questionB)
+
 
 // Default values that can be manipulated later 
 let scoreIncrement = 1;
@@ -172,3 +177,27 @@ function sucess(){
 // the timer have a lag
 
 // For Slides
+
+//HandleBars
+const allQuiz = [QUIZ1, QUIZ2]
+
+// Get a reference to the template script element
+const template = document.querySelector("#slideTemplate").innerHTML;
+
+// Compile the Handlebars template
+const compiledTemplate = Handlebars.compile(template);
+
+// Define the data for the template
+const data = { 
+quizOrigin: 'yuh',
+QuizName:'yay',
+QuizDescription:'yus',
+QuizImage: "./Images/js.png",
+allQuiz: [QUIZ1, QUIZ2]
+};
+
+// Render the template with the data
+const renderedHTML = compiledTemplate(data);
+
+// Insert the rendered HTML into the 'content' div
+document.querySelector("#carousel").innerHTML = renderedHTML;

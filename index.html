@@ -20,14 +20,8 @@
   </header>
   <main>
     <!-- Flickity HTML init -->
-    <div class="carousel" data-flickity='{ "autoPlay": true }'>
-      <div class="carousel-cell" id="test">
-        <h2>Quiz Name</h2>
-        <p>Quiz Descirption</p>
-      </div>
-      <div class="carousel-cell"></div>
-      <div class="carousel-cell"></div>
-      <div class="carousel-cell"></div>
+    <div class="carousel" data-flickity='{ "autoPlay": true }' id='carousel'>
+
     </div>
 
     <div id="infoDiv">
@@ -89,13 +83,17 @@
   <!-- HandleBars -->
   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
-  <script>
-    // compile the template
-    var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
-    template({ doesWhat: "rocks!" })
-  </script>
+<script id="slideTemplate" type="text/x-handlebars-template">
+  {{#each allQuiz}}
+    <div class="carousel-cell" id="{{QuizOrigin}}" style="background-image: url({{QuizImage}});">
+        <h2>{{QuizName}}</h2>
+        <p>{{QuizDescription}}</p>
+    </div>
+</script>
+{{/each}}
+          </body>
   
   <script src="./Code/Script/script.js"></script>
-</body>
 
-</html>
+
+

@@ -22,12 +22,12 @@ body {
     margin-right: 10px;
     background: #8C8;
     border-radius: 5px;
-}
-#test {
+
     background-image: url("/Images/js.png");
     background-size: cover;
-    background-repeat: no-repeat;
+     background-repeat: no-repeat;
 }
+
 
 
 #failureDiv,#sucessDiv{
