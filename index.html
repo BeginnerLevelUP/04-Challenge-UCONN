@@ -70,7 +70,6 @@
                         <a name="" id="Redeption" class="btn btn-danger" href="#" role="button">RISK IT ALL </a>
                         <p>What is Risking it all</p>
                         <p>Explaination</p>
-                        <ul>
         </div>
   </main>
   <footer>
@@ -93,8 +92,7 @@
   <script>
     // compile the template
     var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
-    // execute the compiled template and print the output to the console
-    console.log(template({ doesWhat: "rocks!" }));
+    template({ doesWhat: "rocks!" })
   </script>
   
   <script src="./Code/Script/script.js"></script>
