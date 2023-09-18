@@ -83,14 +83,14 @@
   <!-- HandleBars -->
   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
-<script id="slideTemplate" type="text/x-handlebars-template">
-  {{#each allQuiz}}
-    <div class="carousel-cell" id="{{QuizOrigin}}" style="background-image: url({{QuizImage}});">
-        <h2>{{QuizName}}</h2>
-        <p>{{QuizDescription}}</p>
-    </div>
-</script>
-{{/each}}
+    <script id="slideTemplate" type="text/x-handlebars-template">
+            {{#each allQuiz}}
+            <div class="carousel-cell" id="{{QuizOrigin}}" style="background-image: url({{QuizImage}});">
+                <h2>{{QuizName}}</h2>
+                <p>{{QuizDescription}}</p>
+            </div>
+            {{/each}}
+        </script>
           </body>
   
   <script src="./Code/Script/script.js"></script>

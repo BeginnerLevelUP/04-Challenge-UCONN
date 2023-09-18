@@ -179,25 +179,60 @@ function sucess(){
 // For Slides
 
 //HandleBars
-const allQuiz = [QUIZ1, QUIZ2]
+
 
 // Get a reference to the template script element
-const template = document.querySelector("#slideTemplate").innerHTML;
 
-// Compile the Handlebars template
-const compiledTemplate = Handlebars.compile(template);
+        // Get a reference to the template script element
+    const template = document.querySelector("#slideTemplate").innerHTML;
 
-// Define the data for the template
-const data = { 
-quizOrigin: 'yuh',
-QuizName:'yay',
-QuizDescription:'yus',
-QuizImage: "./Images/js.png",
-allQuiz: [QUIZ1, QUIZ2]
-};
+    // Compile the Handlebars template
+    const compiledTemplate = Handlebars.compile(template);
 
+    // Define the data for the template
+    const allQuizSlides = {
+        allQuiz: [
+    {
+    QuizOrigin: 'yuh',
+    QuizName: 'yay',
+    QuizDescription: 'yus',
+    QuizImage: "./Images/js.png"
+                },
+
+    {
+        QuizOrigin: 'abc',
+    QuizName: 'def',
+    QuizDescription: 'ghi',
+    QuizImage: "./Images/html.png"
+                },
+
+            {
+                QuizOrigin: 'abc',
+                QuizName: 'def',
+                QuizDescription: 'ghi',
+                QuizImage: "./Images/css.jpeg"
+            },
+
+
+
+    ]
+        };
+
+// Connect Quiz with slide 
+
+
+
+// use this later for when user can create quiz
+// allQuizSlides.allQuiz.push({
+//     QuizOrigin: 'abc',
+//     QuizName: 'def',
+//     QuizDescription: 'ghi',
+//     QuizImage: "./Images/css.jpeg"
+// });
+
+
+//Keep Render As Last Line For Now
 // Render the template with the data
-const renderedHTML = compiledTemplate(data);
-
-// Insert the rendered HTML into the 'content' div
+const renderedHTML = compiledTemplate(allQuizSlides);
+// Insert the rendered HTML into the 'carousel' div
 document.querySelector("#carousel").innerHTML = renderedHTML;
