@@ -18,6 +18,12 @@ const question1 = new Question('What is the capital of France?', ['Paris', 'Berl
 const question2 = new Question('What is the of France?', ['Pas', 'Bein', 'Loon', 'Maid']);
 QUIZ1.push(question1, question2)
 
+const QUIZ2 = []
+const questionA = new Question('What is the capital of France?', ['Paris', 'Berlin', 'London', 'Madrid']);
+const questionB = new Question('What is the of France?', ['Pas', 'Bein', 'Loon', 'Maid']);
+QUIZ2.push(questionA, questionB)
+
+
 // Default values that can be manipulated later 
 let scoreIncrement = 1;
 let currentScore = 0;
@@ -171,3 +177,62 @@ function sucess(){
 // the timer have a lag
 
 // For Slides
+
+//HandleBars
+
+
+// Get a reference to the template script element
+
+        // Get a reference to the template script element
+    const template = document.querySelector("#slideTemplate").innerHTML;
+
+    // Compile the Handlebars template
+    const compiledTemplate = Handlebars.compile(template);
+
+    // Define the data for the template
+    const allQuizSlides = {
+        allQuiz: [
+    {
+    QuizOrigin: 'yuh',
+    QuizName: 'yay',
+    QuizDescription: 'yus',
+    QuizImage: "./Images/js.png"
+                },
+
+    {
+        QuizOrigin: 'abc',
+    QuizName: 'def',
+    QuizDescription: 'ghi',
+    QuizImage: "./Images/html.png"
+                },
+
+            {
+                QuizOrigin: 'abc',
+                QuizName: 'def',
+                QuizDescription: 'ghi',
+                QuizImage: "./Images/css.jpeg"
+            },
+
+
+
+    ]
+        };
+
+// Connect Quiz with slide 
+
+
+
+// use this later for when user can create quiz
+// allQuizSlides.allQuiz.push({
+//     QuizOrigin: 'abc',
+//     QuizName: 'def',
+//     QuizDescription: 'ghi',
+//     QuizImage: "./Images/css.jpeg"
+// });
+
+
+//Keep Render As Last Line For Now
+// Render the template with the data
+const renderedHTML = compiledTemplate(allQuizSlides);
+// Insert the rendered HTML into the 'carousel' div
+document.querySelector("#carousel").innerHTML = renderedHTML;

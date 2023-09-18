@@ -14,15 +14,14 @@
   <link rel="stylesheet" href="./Code/Style/style.css">
 
 </head>
-
 <body>
   <header>
     <!-- place navbar here -->
   </header>
   <main>
     <!-- Flickity HTML init -->
-    <div class="carousel" data-flickity='{ "autoPlay": true }'>
-      <!-- <div class="carousel-cell"></div> -->
+    <div class="carousel" data-flickity='{ "autoPlay": true }' id='carousel'>
+
     </div>
 
     <div id="infoDiv">
@@ -65,7 +64,6 @@
                         <a name="" id="Redeption" class="btn btn-danger" href="#" role="button">RISK IT ALL </a>
                         <p>What is Risking it all</p>
                         <p>Explaination</p>
-                        <ul>
         </div>
   </main>
   <footer>
@@ -79,8 +77,23 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
+    <!-- Flickity -->
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-  <script src="./Code/Script/script.js"></script>
-</body>
 
-</html>
+  <!-- HandleBars -->
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+    <script id="slideTemplate" type="text/x-handlebars-template">
+            {{#each allQuiz}}
+            <div class="carousel-cell" id="{{QuizOrigin}}" style="background-image: url({{QuizImage}});">
+                <h2>{{QuizName}}</h2>
+                <p>{{QuizDescription}}</p>
+            </div>
+            {{/each}}
+        </script>
+          </body>
+  
+  <script src="./Code/Script/script.js"></script>
+
+
+
