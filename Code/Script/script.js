@@ -1,3 +1,4 @@
+//For Question
 // Generating Question Object
 class Question {
     constructor(question, [correct, option1, option2, option3]) {
@@ -23,16 +24,20 @@ let currentScore = 0;
 let DefaultTimer = 60
 
 // Getting DOM Elements 
+const sucessDiv = document.querySelector('#sucessDiv')
 const failureDiv = document.querySelector('#failureDiv')
 const questionDiv = document.querySelector('#questionDiv')
 const questionUl = document.querySelector('#questionUl');
 const time = document.querySelector('#Time')
 const scored = document.querySelector('#Score')
 const hint = document.querySelector('#Hint')
+const begin=document.querySelector('#begin')
 // Setting Text Content Outside of function calls
 time.textContent = `Time Remaining : ${DefaultTimer}`;
 scored.textContent = `Score : ${currentScore} point`
 hint.textContent=`Hint : ` // update later 
+
+
 /* 
 Score function:
 - Allows the user to move on to the next question.
@@ -41,6 +46,7 @@ Score function:
 */
 
 function score(Element) {
+    begin.style.display='none'
     updateTimer();
     if (Element.textContent === QUIZ1[index]._correct) {
         currentScore += scoreIncrement;
@@ -80,15 +86,10 @@ function score(Element) {
             clearInterval(timerInterval);
             hint.textContent = `No Need For Hint Champ`;
             scored.textContent = `Quiz Completed! Final Score: ${currentScore}`;
+            sucess()
         }
 
     }
-}
-
-// Failure
-function failure() {
-    questionDiv.innerHTML = ''
-    failureDiv.style.display = 'block'
 }
 
 // Timer
@@ -108,7 +109,6 @@ function updateTimer() {
 
 // Appends the Question to the page
 let index = 0 //used to next question
-
 function appendToPage() {
     questionUl.innerHTML = ''; // Clear previous answer choices
 
@@ -126,11 +126,48 @@ function appendToPage() {
 
 
 }
-
-
-
 appendToPage()
 
+// Failure
+function failure() {
+    questionDiv.style.display = 'none'
+    failureDiv.style.display = 'block'
+
+    const yesButton = document.querySelector('#yes');
+    const noButton = document.querySelector('#no');
+
+    yes.addEventListener('click', () => {
+        // Reset quiz variables
+        currentScore = 0;
+        DefaultTimer = 60;
+        index = 0;
+
+        // Reset DOM elements
+        scored.textContent = `Score : ${currentScore} point`;
+        time.textContent = `Time Remaining : ${DefaultTimer}`;
+        hint.textContent = `Hint : ` // update later 
+
+        // Hide the failure div and show the question div
+        failureDiv.style.display = 'none';
+        questionDiv.style.display = '';
+
+        // Reset the quiz questions and timer
+        appendToPage();
+        updateTimer();
+    })
+
+    noButton.addEventListener('click',()=>{
+        // add function late
+    })
+}
+
+//Sucess 
+function sucess(){
+    questionDiv.style.display = 'none'
+    sucessDiv.style.display = 'block'
+}
 
 // Bugs so far
 // the timer have a lag
+
+// For Slides
