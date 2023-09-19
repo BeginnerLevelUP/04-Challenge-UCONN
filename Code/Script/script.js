@@ -39,6 +39,8 @@ const time = document.querySelector('#Time')
 const scored = document.querySelector('#Score')
 const hint = document.querySelector('#Hint')
 const begin=document.querySelector('#begin')
+
+
 // Setting The Deafaults
 infoDiv.style.display='none'
 questionDiv.style.display='none'
@@ -47,16 +49,11 @@ scored.textContent = `Score : ${currentScore} point`
 hint.textContent=`Hint : ` // update later 
 
 
-/* 
-Score function:
-- Allows the user to move on to the next question.
-- Adds or subtracts score.
-- Adds or subtracts time when you get something
-*/
 
+//Score
 function score(Element,Quiz) {
-    begin.style.display='none'
     updateTimer();
+    begin.style.display='none'
     if (Element.textContent === Quiz[index]._choices[0]) {
         currentScore += scoreIncrement;
     } else {
@@ -105,7 +102,7 @@ function score(Element,Quiz) {
 let timerInterval; // Declare a global variable to store the timer interval
 
 function updateTimer() {
-// the timer haas a one second lag to start implete something like GO sign to make the it not so obivous 
+// !!! the timer haas a one second lag to start implete something like GO sign to make the it not so obivous 
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
         if (DefaultTimer >= 0) {
@@ -117,7 +114,7 @@ function updateTimer() {
 
 
 // Appends the Question to the page
-let index = 0 //used to next question
+let index = 0 
 function appendToPage(Quiz) {
     questionUl.innerHTML = ''; // Clear previous answer choices
     questionName.textContent = `Question : ${Quiz[index]._question}`;
@@ -136,42 +133,16 @@ function appendToPage(Quiz) {
 }
 
 
-
 // Failure
 function failure() {
+    escButton.style.display = 'none'
     questionDiv.style.display = 'none'
     failureDiv.style.display = 'block'
-
-    const yesButton = document.querySelector('#yes');
-    const noButton = document.querySelector('#no');
-
-    yes.addEventListener('click', () => {
-        // Reset quiz variables
-        currentScore = 0;
-        DefaultTimer = 60;
-        index = 0;
-
-        // Reset DOM elements
-        scored.textContent = `Score : ${currentScore} point`;
-        time.textContent = `Time Remaining : ${DefaultTimer}`;
-        hint.textContent = `Hint : ` // update later 
-
-        // Hide the failure div and show the question div
-        failureDiv.style.display = 'none';
-        questionDiv.style.display = '';
-
-        // Reset the quiz questions and timer
-        appendToPage();
-        updateTimer();
-    })
-
-    noButton.addEventListener('click',()=>{
-        // add function late
-    })
 }
 
 //Sucess 
 function sucess(){
+    escButton.style.display = 'none'
     questionDiv.style.display = 'none'
     sucessDiv.style.display = 'block'
 }
@@ -183,11 +154,12 @@ function sucess(){
 
 
 // Get DOM ELEMENTS
-    const template = document.querySelector("#slideTemplate").innerHTML;
     const escButton=document.querySelector('#esc')
+    const no =[... document.querySelectorAll(".no")]
 //Setting Defaults
     escButton.style.display='none'
 //HandleBars
+const template = document.querySelector("#slideTemplate").innerHTML;
 const compiledTemplate = Handlebars.compile(template);
     const allQuizSlides = {
         allQuiz: [
@@ -219,25 +191,46 @@ const compiledTemplate = Handlebars.compile(template);
 
 
 //Function 
-
-escButton.addEventListener('click',()=>{
+function goHome() {
     carouselDiv.style.display = ''
     escButton.style.display = 'none'
     infoDiv.style.display = 'none'
     questionDiv.style.display = 'none'
+
+    // Reset quiz variables
+    currentScore = 0;
+    DefaultTimer = 60;
+    index = 0;
+
+    // Reset DOM elements
+    scored.textContent = `Score : ${currentScore} point`;
+    time.textContent = `Time Remaining : ${DefaultTimer}`;
+    hint.textContent = `Hint : ` // update later 
+
+    // Hide the failure div and show the question div
+    failureDiv.style.display = 'none';
+    questionDiv.style.display = '';
+
+    // Reset the quiz questions and timer
+    appendToPage();
+    updateTimer();
+}
+
+escButton.addEventListener('click',()=>{
+    goHome()
+    // !!! save current data on escape
 })
 
 
 
-//Keep Render As Last Line For Now
-// Render the template with the data
+//Keep Render at immediate end
 const renderedHTML = compiledTemplate(allQuizSlides);
-// Insert the rendered HTML into the 'carousel' div
 document.querySelector("#carousel").innerHTML = renderedHTML;
 
+// Keep this code at the end after the handle Bars has rendered 
 const carouselDiv=document.querySelector('.carousel')
 const carouselCell = [...document.querySelectorAll('.carousel-cell')];
-const allQuizes = [QUIZ1, QUIZ2, QUIZ3]; // Replace with your actual quiz objects
+const allQuizes = [QUIZ1, QUIZ2, QUIZ3]; 
 
 carouselCell.forEach((cell, index) => {
     cell.addEventListener('click', () => {
@@ -247,11 +240,19 @@ carouselCell.forEach((cell, index) => {
             carouselDiv.style.display='none'
             infoDiv.style.display = ''
             questionDiv.style.display = ''
+            
             const clickedQuiz = allQuizes[index];
             appendToPage(clickedQuiz);
         }
     });
 });
+
+no.forEach(Element=>{
+    Element.addEventListener('click',()=>{
+        escButton.style.display='none'
+        goHome()
+    })
+})
 // Connect Quiz with slide 
 // use this later for when user can create quiz
 // allQuizSlides.allQuiz.push({
