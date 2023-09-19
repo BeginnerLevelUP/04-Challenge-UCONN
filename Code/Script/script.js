@@ -42,8 +42,8 @@ const begin=document.querySelector('#begin')
 
 
 // Setting The Deafaults
-infoDiv.style.display='none'
-questionDiv.style.display='none'
+// infoDiv.style.display='none'
+// questionDiv.style.display='none'
 time.textContent = `Time Remaining : ${DefaultTimer}`;
 scored.textContent = `Score : ${currentScore} point`
 hint.textContent=`Hint : ` // update later 
@@ -53,7 +53,7 @@ hint.textContent=`Hint : ` // update later
 //Score
 function score(Element,Quiz) {
     updateTimer();
-    begin.style.display='none'
+    // begin.style.display='none'
     if (Element.textContent === Quiz[index]._choices[0]) {
         currentScore += scoreIncrement;
     } else {
@@ -135,16 +135,16 @@ function appendToPage(Quiz) {
 
 // Failure
 function failure() {
-    escButton.style.display = 'none'
-    questionDiv.style.display = 'none'
-    failureDiv.style.display = 'block'
+    // escButton.style.display = 'none'
+    // questionDiv.style.display = 'none'
+    // failureDiv.style.display = 'block'
 }
 
 //Sucess 
 function sucess(){
-    escButton.style.display = 'none'
-    questionDiv.style.display = 'none'
-    sucessDiv.style.display = 'block'
+    // escButton.style.display = 'none'
+    // questionDiv.style.display = 'none'
+    // sucessDiv.style.display = 'block'
 }
 
 // Bugs so far
@@ -157,7 +157,7 @@ function sucess(){
     const escButton=document.querySelector('#esc')
     const no =[... document.querySelectorAll(".no")]
 //Setting Defaults
-    escButton.style.display='none'
+    // escButton.style.display='none'
 //HandleBars
 const template = document.querySelector("#slideTemplate").innerHTML;
 const compiledTemplate = Handlebars.compile(template);
@@ -192,10 +192,10 @@ const compiledTemplate = Handlebars.compile(template);
 
 //Function 
 function goHome() {
-    carouselDiv.style.display = ''
-    escButton.style.display = 'none'
-    infoDiv.style.display = 'none'
-    questionDiv.style.display = 'none'
+    // carouselDiv.style.display = ''
+    // escButton.style.display = 'none'
+    // infoDiv.style.display = 'none'
+    // questionDiv.style.display = 'none'
 
     // Reset quiz variables
     currentScore = 0;
@@ -208,8 +208,8 @@ function goHome() {
     hint.textContent = `Hint : ` // update later 
 
     // Hide the failure div and show the question div
-    failureDiv.style.display = 'none';
-    questionDiv.style.display = '';
+    // failureDiv.style.display = 'none';
+    // questionDiv.style.display = '';
 
     // Reset the quiz questions and timer
     appendToPage();
@@ -236,10 +236,10 @@ carouselCell.forEach((cell, index) => {
     cell.addEventListener('click', () => {
         // Check if the index is within the bounds of the array
         if (index >= 0 && index < allQuizes.length) {
-            escButton.style.display = ''
-            carouselDiv.style.display='none'
-            infoDiv.style.display = ''
-            questionDiv.style.display = ''
+            // escButton.style.display = ''
+            // carouselDiv.style.display='none'
+            // infoDiv.style.display = ''
+            // questionDiv.style.display = ''
             
             const clickedQuiz = allQuizes[index];
             appendToPage(clickedQuiz);
@@ -249,7 +249,7 @@ carouselCell.forEach((cell, index) => {
 
 no.forEach(Element=>{
     Element.addEventListener('click',()=>{
-        escButton.style.display='none'
+        // escButton.style.display='none'
         goHome()
     })
 })
