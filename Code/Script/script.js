@@ -1,4 +1,5 @@
 //  import shuffle array for import practice
+import { shuffleArray } from "./usefullCode.js";
 
 //For Question
 // Generating Question Object
@@ -6,6 +7,7 @@ class Question {
     constructor(question,choices,hint) {
         this._question = question;
         this._choices = choices
+        this._correct=choices[0]
         this._hint=hint
     }
 }
@@ -53,7 +55,7 @@ hint.textContent=`Hint`
 
 //Score
 function score(Element,Quiz) {
-    if (Element.textContent === Quiz[index]._choices[0]) {
+    if (Element.textContent === Quiz[index]._correct) {
         currentScore += scoreIncrement;
     } else {
         if (currentScore === 0) {
@@ -142,10 +144,10 @@ function appendToPage(Quiz) {
         }
 
     })
-     const shuffledOpt=Quiz[index]._choices
-     
+     let shuffledOpt=shuffleArray(Quiz[index]._choices)
+     console.log(shuffledOpt)
     // Creating the Options for the each Question in the quiz
-    Quiz[index]._choices.forEach(Element => {
+    shuffledOpt.forEach(Element => {
         const li = document.createElement('li');
         li.textContent = Element;
         questionUl.appendChild(li);
