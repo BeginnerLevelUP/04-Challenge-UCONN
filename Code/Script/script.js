@@ -1,14 +1,9 @@
 //For Question
 // Generating Question Object
 class Question {
-    constructor(question, [correct, option1, option2, option3]) {
+    constructor(question,choices) {
         this._question = question;
-        this._choices = [
-            this._correct = correct,
-            this._option1 = option1,
-            this._option2 = option2,
-            this._option3 = option3
-        ];
+        this._choices = choices
     }
 }
 
@@ -62,7 +57,7 @@ Score function:
 function score(Element,Quiz) {
     begin.style.display='none'
     updateTimer();
-    if (Element.textContent === Quiz[index]._correct) {
+    if (Element.textContent === Quiz[index]._choices[0]) {
         currentScore += scoreIncrement;
     } else {
         if (currentScore === 0) {
@@ -125,21 +120,21 @@ function updateTimer() {
 let index = 0 //used to next question
 function appendToPage(Quiz) {
     questionUl.innerHTML = ''; // Clear previous answer choices
-    questionName.textContent = `Question : ${Quiz._question}`;
+    questionName.textContent = `Question : ${Quiz[index]._question}`;
+
     Quiz[index]._choices.forEach(Element => {
         const li = document.createElement('li');
         li.textContent = Element;
         questionUl.appendChild(li);
 
         // Remove previous event listeners
-        li.removeEventListener('click', score);
+        li.removeEventListener('click', () => score(li, QUIZ2));
 
         // Add a new event listener
-        li.addEventListener('click', () => score(li,QUIZ2));
+        li.addEventListener('click', () => score(li, Quiz));
     });
-
-
 }
+
 
 
 // Failure
