@@ -1,25 +1,28 @@
+//  import shuffle array for import practice
+
 //For Question
 // Generating Question Object
 class Question {
-    constructor(question,choices) {
+    constructor(question,choices,hint) {
         this._question = question;
         this._choices = choices
+        this._hint=hint
     }
 }
 
 // Class Instance
 const QUIZ1 = []
-const question1 = new Question('What is the capital of France?1', ['Paris1', 'Berlin', 'London', 'Madrid']);
+const question1 = new Question('What is the capital of France?1', ['Paris1', 'Berlin', 'London', 'Madrid'],'hint1');
 const question2 = new Question('What is the of France?1', ['Pas1', 'Bein', 'Loon', 'Maid']);
 QUIZ1.push(question1, question2)
 
 const QUIZ2 = []
-const questionA = new Question('What is the capital of France?2', ['Parisdsds2', 'Berlin', 'London', 'Madrid']);
+const questionA = new Question('What is the capital of France?2', ['Parisdsds2', 'Berlin', 'London', 'Madrid'], 'hint2');
 const questionB = new Question('What is the of France?2', ['Pas2', 'Bein', 'Loon', 'Maid']);
 QUIZ2.push(questionA, questionB)
 
 const QUIZ3 = []
-const questionC = new Question('What is the capital of France?3', ['Paris3', 'Berlin', 'London', 'Madrid']);
+const questionC = new Question('What is the capital of France?3', ['Paris3', 'Berlin', 'London', 'Madrid'], 'hint3');
 const questionD = new Question('What is the of France?4', ['Pas3', 'Bein', 'Loon', 'Maid']);
 QUIZ3.push(questionC, questionD)
 
@@ -45,8 +48,7 @@ const hint = document.querySelector('#Hint')
 infoDiv.style.display='none'
 time.textContent = `Time Remaining : ${DefaultTimer}`;
 scored.textContent = `Score : ${currentScore} point`
-hint.textContent=`Hint : ` // update later 
-
+hint.textContent=`Hint` 
 
 
 //Score
@@ -121,8 +123,28 @@ let index = 0
 function appendToPage(Quiz) {
     updateTimer();
     questionUl.innerHTML = ''; // Clear previous answer choices
+
+    // Setting the question Name
     questionName.textContent = `Question : ${Quiz[index]._question}`;
 
+    // Setting question hint 
+    let clicked=true
+    hint.addEventListener('click',()=>{
+        if(clicked){
+            hint.style.textDecoration = 'none'
+            hint.textContent = `Hint : ${Quiz[index]._hint}`
+            clicked=false
+        }
+        else{
+            hint.style.textDecoration = ''
+             hint.textContent = `Hint` 
+             clicked=true
+        }
+
+    })
+     const shuffledOpt=Quiz[index]._choices
+     
+    // Creating the Options for the each Question in the quiz
     Quiz[index]._choices.forEach(Element => {
         const li = document.createElement('li');
         li.textContent = Element;
