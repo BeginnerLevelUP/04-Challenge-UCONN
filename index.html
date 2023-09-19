@@ -20,10 +20,8 @@
   </header>
   <main>
     <!-- Flickity HTML init -->
-    <div class="carousel" data-flickity='{ "autoPlay": true }' id='carousel'>
-
-    </div>
-
+    <div class="carousel" data-flickity='{ "autoPlay": true }' id='carousel'> </div>
+    <a name="" id="esc" class="btn btn-primary" href="#" role="button">ESCAPE</a>
     <div id="infoDiv">
       <h3 id="begin">Click to Begin</h3>
       <ul id="infoUl">
@@ -34,7 +32,7 @@
     </div>
     
     <div id="questionDiv">
-      <h2 id="questionName">Name</h2>
+      <h2 id="questionName"></h2>
       <ul id="questionUl">
       </ul>
     </div>
@@ -85,7 +83,7 @@
 
     <script id="slideTemplate" type="text/x-handlebars-template">
             {{#each allQuiz}}
-            <div class="carousel-cell" id="{{QuizOrigin}}" style="background-image: url({{QuizImage}});">
+            <div class="carousel-cell " id="{{QuizOrigin}}" style="background-image: url({{QuizImage}});">
                 <h2>{{QuizName}}</h2>
                 <p>{{QuizDescription}}</p>
             </div>

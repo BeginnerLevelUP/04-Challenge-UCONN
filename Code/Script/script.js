@@ -14,15 +14,19 @@ class Question {
 
 // Class Instance
 const QUIZ1 = []
-const question1 = new Question('What is the capital of France?', ['Paris', 'Berlin', 'London', 'Madrid']);
-const question2 = new Question('What is the of France?', ['Pas', 'Bein', 'Loon', 'Maid']);
+const question1 = new Question('What is the capital of France?1', ['Paris1', 'Berlin', 'London', 'Madrid']);
+const question2 = new Question('What is the of France?1', ['Pas1', 'Bein', 'Loon', 'Maid']);
 QUIZ1.push(question1, question2)
 
 const QUIZ2 = []
-const questionA = new Question('What is the capital of France?', ['Paris', 'Berlin', 'London', 'Madrid']);
-const questionB = new Question('What is the of France?', ['Pas', 'Bein', 'Loon', 'Maid']);
+const questionA = new Question('What is the capital of France?2', ['Parisdsds2', 'Berlin', 'London', 'Madrid']);
+const questionB = new Question('What is the of France?2', ['Pas2', 'Bein', 'Loon', 'Maid']);
 QUIZ2.push(questionA, questionB)
 
+const QUIZ3 = []
+const questionC = new Question('What is the capital of France?3', ['Paris3', 'Berlin', 'London', 'Madrid']);
+const questionD = new Question('What is the of France?4', ['Pas3', 'Bein', 'Loon', 'Maid']);
+QUIZ3.push(questionC, questionD)
 
 // Default values that can be manipulated later 
 let scoreIncrement = 1;
@@ -34,11 +38,15 @@ const sucessDiv = document.querySelector('#sucessDiv')
 const failureDiv = document.querySelector('#failureDiv')
 const questionDiv = document.querySelector('#questionDiv')
 const questionUl = document.querySelector('#questionUl');
+const infoDiv=document.querySelector('#infoDiv')
+const questionName=document.querySelector('#questionName')
 const time = document.querySelector('#Time')
 const scored = document.querySelector('#Score')
 const hint = document.querySelector('#Hint')
 const begin=document.querySelector('#begin')
-// Setting Text Content Outside of function calls
+// Setting The Deafaults
+infoDiv.style.display='none'
+questionDiv.style.display='none'
 time.textContent = `Time Remaining : ${DefaultTimer}`;
 scored.textContent = `Score : ${currentScore} point`
 hint.textContent=`Hint : ` // update later 
@@ -51,10 +59,10 @@ Score function:
 - Adds or subtracts time when you get something
 */
 
-function score(Element) {
+function score(Element,Quiz) {
     begin.style.display='none'
     updateTimer();
-    if (Element.textContent === QUIZ1[index]._correct) {
+    if (Element.textContent === Quiz[index]._correct) {
         currentScore += scoreIncrement;
     } else {
         if (currentScore === 0) {
@@ -77,9 +85,9 @@ function score(Element) {
     // Increase the index for the next question
     index++;
     // Check if there are more questions left
-    if (index < QUIZ1.length) {
+    if (index < Quiz.length) {
         questionUl.innerHTML = '';
-        appendToPage();
+        appendToPage(QUIZ2);
     } else {
         // Display the final score when all questions are answered
         if (currentScore === 0) {
@@ -115,10 +123,10 @@ function updateTimer() {
 
 // Appends the Question to the page
 let index = 0 //used to next question
-function appendToPage() {
+function appendToPage(Quiz) {
     questionUl.innerHTML = ''; // Clear previous answer choices
-
-    QUIZ1[index]._choices.forEach(Element => {
+    questionName.textContent = `Question : ${Quiz._question}`;
+    Quiz[index]._choices.forEach(Element => {
         const li = document.createElement('li');
         li.textContent = Element;
         questionUl.appendChild(li);
@@ -127,12 +135,12 @@ function appendToPage() {
         li.removeEventListener('click', score);
 
         // Add a new event listener
-        li.addEventListener('click', () => score(li));
+        li.addEventListener('click', () => score(li,QUIZ2));
     });
 
 
 }
-appendToPage()
+
 
 // Failure
 function failure() {
@@ -178,18 +186,14 @@ function sucess(){
 
 // For Slides
 
-//HandleBars
 
-
-// Get a reference to the template script element
-
-        // Get a reference to the template script element
+// Get DOM ELEMENTS
     const template = document.querySelector("#slideTemplate").innerHTML;
-
-    // Compile the Handlebars template
-    const compiledTemplate = Handlebars.compile(template);
-
-    // Define the data for the template
+    const escButton=document.querySelector('#esc')
+//Setting Defaults
+    escButton.style.display='none'
+//HandleBars
+const compiledTemplate = Handlebars.compile(template);
     const allQuizSlides = {
         allQuiz: [
     {
@@ -218,17 +222,16 @@ function sucess(){
     ]
         };
 
-// Connect Quiz with slide 
 
+//Function 
 
+escButton.addEventListener('click',()=>{
+    carouselDiv.style.display = ''
+    escButton.style.display = 'none'
+    infoDiv.style.display = 'none'
+    questionDiv.style.display = 'none'
+})
 
-// use this later for when user can create quiz
-// allQuizSlides.allQuiz.push({
-//     QuizOrigin: 'abc',
-//     QuizName: 'def',
-//     QuizDescription: 'ghi',
-//     QuizImage: "./Images/css.jpeg"
-// });
 
 
 //Keep Render As Last Line For Now
@@ -236,3 +239,29 @@ function sucess(){
 const renderedHTML = compiledTemplate(allQuizSlides);
 // Insert the rendered HTML into the 'carousel' div
 document.querySelector("#carousel").innerHTML = renderedHTML;
+
+const carouselDiv=document.querySelector('.carousel')
+const carouselCell = [...document.querySelectorAll('.carousel-cell')];
+const allQuizes = [QUIZ1, QUIZ2, QUIZ3]; // Replace with your actual quiz objects
+
+carouselCell.forEach((cell, index) => {
+    cell.addEventListener('click', () => {
+        // Check if the index is within the bounds of the array
+        if (index >= 0 && index < allQuizes.length) {
+            escButton.style.display = ''
+            carouselDiv.style.display='none'
+            infoDiv.style.display = ''
+            questionDiv.style.display = ''
+            const clickedQuiz = allQuizes[index];
+            appendToPage(clickedQuiz);
+        }
+    });
+});
+// Connect Quiz with slide 
+// use this later for when user can create quiz
+// allQuizSlides.allQuiz.push({
+//     QuizOrigin: 'abc',
+//     QuizName: 'def',
+//     QuizDescription: 'ghi',
+//     QuizImage: "./Images/css.jpeg"
+// });
