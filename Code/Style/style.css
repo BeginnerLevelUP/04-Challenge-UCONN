@@ -36,3 +36,6 @@ body {
 .RedeptionDiv,.RiskDiv{
     margin-top:2%;
 }
+#Hint{
+    text-decoration: underline;
+}
